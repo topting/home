@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sunny.D-Home</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/vuetify/2.6.4/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.4/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vuetify/2.6.4/vuetify.min.js"></script>
+    <style>
+        .v-card {
+            margin: 5vh auto 0;
+        }
+
+        .v-app-bar .app-bar__inner {
+            width: 100%;
+        }
+
+        .v-app-bar .v-btn__content, img {
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<v-app id="app">
+    <v-card
+            class="overflow-hidden"
+            width="50vw"
+            height="90vh"
+            hover>
+        <v-app-bar
+                flat
+                color="teal accent-4"
+                darkelevate-on-scroll>
+            <div class="app-bar__inner d-flex justify-space-between align-center">
+                <div class="d-inline-flex align-center">
+                    <v-icon large color="#fff">mdi-home-minus-outline</v-icon>
+                    <span class="white--text text-h5 pl-2">Home</span>
+                </div>
+                <v-btn
+                        class="overflow-hidden"
+                        color="teal darken-1"
+                        small
+                        fab>
+                    <img src="/logo.jpg" alt="">
+                </v-btn>
+            </div>
+        </v-app-bar>
+
+        <v-list
+                flat
+                two-line>
+            <v-subheader>Note Lists</v-subheader>
+            <v-list-item-group color="primary">
+                <v-list-item
+                        v-for="(nav, idx) in navList"
+                        :key="idx"
+                        :href="`${baseUrl}${nav.link}`"
+                        target="_blank">
+                    <v-list-item-content>
+                        <v-list-item-title v-text="nav.text"></v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list-item-group>
+        </v-list>
+    </v-card>
+</v-app>
+</body>
+<script>
+    const App = {
+        vuetify: new Vuetify(),
+        data: {
+            baseUrl: 'https://topting.github.io',
+            navList: [
+                {text: 'Front-Note', link: '/front-note/'},
+                {text: 'Xa-Note', link: '/xa-note/'},
+                {text: 'Cms-Note ', link: '/cms-note/'},
+            ]
+        }
+    }
+
+    const app = new Vue(App)
+    app.$mount('#app')
+</script>
+</html>
